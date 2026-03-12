@@ -11,8 +11,8 @@ pub struct Take<'info>{
     pub taker: Signer<'info>,
     #[account(mut)]
     pub maker: SystemAccount<'info>,
-    pub mint_a:InterfaceAccount<'info, Mint>,
-    pub mint_b:InterfaceAccount<'info, Mint>,
+    pub mint_a:Box<InterfaceAccount<'info, Mint>>,
+    pub mint_b:Box<InterfaceAccount<'info, Mint>>,
     #[account(
         init_if_needed,
         payer=taker,
@@ -20,14 +20,14 @@ pub struct Take<'info>{
         associated_token::authority = taker,
         associated_token::token_program = token_program,
     )]
-    pub taker_mint_a_ata:InterfaceAccount<'info,TokenAccount>,
+    pub taker_mint_a_ata:Box<InterfaceAccount<'info,TokenAccount>>,
     #[account(
         mut,
         associated_token::mint = mint_b,
         associated_token::authority = taker,
         associated_token::token_program = token_program,
     )]
-    pub taker_mint_b_ata:InterfaceAccount<'info,TokenAccount>,
+    pub taker_mint_b_ata:Box<InterfaceAccount<'info,TokenAccount>>,
     #[account(
         init_if_needed,
         payer=maker,
@@ -35,7 +35,7 @@ pub struct Take<'info>{
         associated_token::authority = maker,
         associated_token::token_program = token_program,
     )]
-    pub maker_mint_b_ata:InterfaceAccount<'info,TokenAccount>,
+    pub maker_mint_b_ata:Box<InterfaceAccount<'info,TokenAccount>>,
     #[account(
         mut,
         close=maker,
@@ -45,14 +45,14 @@ pub struct Take<'info>{
         has_one = mint_a @ EscrowError::InvalidMintA,
         has_one = mint_b @ EscrowError::InvalidMintB
     )]
-    pub escrow:Account<'info,Escrow>,
+    pub escrow:Box<Account<'info,Escrow>>,
     #[account(
         mut,
         associated_token::mint = mint_a,
         associated_token::authority = escrow,
         associated_token::token_program = token_program,
     )]
-    pub vault:InterfaceAccount<'info,TokenAccount>,
+    pub vault:Box<InterfaceAccount<'info,TokenAccount>>,
     pub associated_token_program: Program<'info, AssociatedToken>,
     pub token_program: Interface<'info, TokenInterface>,
     pub system_program: Program<'info,System>
