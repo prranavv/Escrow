@@ -3476,21 +3476,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "solana-message"
-version = "4.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6435a6070b6c5898201aae845db328cf3bd3cebc17b55af9b43138da5ced4a85"
-dependencies = [
- "lazy_static",
- "solana-address 2.3.0",
- "solana-hash 4.2.0",
- "solana-instruction 3.2.0",
- "solana-sanitize 3.0.1",
- "solana-sdk-ids 3.1.0",
- "solana-transaction-error 3.1.0",
-]
-
-[[package]]
 name = "solana-msg"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5564,7 +5549,6 @@ version = "0.1.0"
 dependencies = [
  "litesvm",
  "litesvm-token",
- "solana-message 4.0.0",
  "solana-sdk",
  "solana-system-interface 3.1.0",
  "solana-transaction",
