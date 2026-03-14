@@ -11,7 +11,7 @@ declare_id!("F787RkPTqsZe4ZJUijreGS42hKrznXrvkNJ3P7d97j7s");
 pub mod escrow {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>,recieve:u64,amount:u64,seed:u64) -> Result<()> {
+    pub fn initialize(ctx: Context<Initialize>,seed:u64,recieve:u64,amount:u64) -> Result<()> {
         instructions::initialize::handler(ctx, recieve, seed, amount)
     }
 
